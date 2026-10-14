@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ผังสายธารแห่งคุณค่า (Value Stream Mapping: VSM) - แผนผังมาตรฐานวิทยานิพนธ์</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap');
+  
+  * {
+    box-sizing: border-box;
+  }
+  @page {
+    size: landscape;
+    margin: 0;
+  }
+  body {
+    font-family: 'Sarabun', 'TH Sarabun New', sans-serif;
+    background-color: #0f172a;
+    margin: 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  svg text {
+    font-family: 'Sarabun', 'TH Sarabun New', sans-serif;
+  }
+  .toolbar {
+    position: sticky;
+    top: 15px;
+    z-index: 100;
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid #334155;
+    padding: 12px 24px;
+    border-radius: 50px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  }
+  .btn {
+    padding: 9px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .btn-print {
+    background: #2563eb;
+    color: white;
+  }
+  .btn-print:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+  }
+  .toolbar-hint {
+    color: #94a3b8;
+    font-size: 13px;
+  }
+  .vsm-container {
+    background: #ffffff;
+    width: 1440px;
+    padding: 35px 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    border: 1px solid #e2e8f0;
+  }
+  .caption-top {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  .caption-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.3;
+  }
+  .caption-sub {
+    font-size: 15.5px;
+    color: #475569;
+    margin-top: 6px;
+    font-weight: 600;
+  }
+  .caption-bottom {
+    text-align: center;
+    font-size: 15px;
+    color: #334155;
+    margin-top: 15px;
+    font-style: italic;
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  @media print {
+    @page {
+      margin: 5mm;
+      size: landscape;
+    }
+    body {
+      background: white !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      gap: 0 !important;
+    }
+    .toolbar {
+      display: none !important;
+    }
+    .vsm-container {
+      width: 100% !important;
+      box-shadow: none !important;
+      border: none !important;
+      padding: 10px 0 !important;
+      page-break-after: always;
+      break-after: page;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span class="toolbar-hint">🎓 แผนผัง VSM มาตรฐานวิทยานิพนธ์ (ตัวหนังสือใหญ่ ชัดเจน ข้อความอยู่ในกรอบ 100% พร้อมใช้งาน)</span>
+  <button class="btn btn-print" onclick="window.print()">🖨️ พิมพ์หรือบันทึกเป็น PDF (Print to PDF)</button>
+</div>
+
+<!-- =================================================================== -->
+<!-- 1. CURRENT STATE VSM (As-Is) -->
+<!-- =================================================================== -->
+<div class="vsm-container">
+  <div class="caption-top">
+    <div class="caption-title">แผนผังสายธารแห่งคุณค่าสภาพปัจจุบัน (Current State Value Stream Mapping: As-Is)</div>
+  </div>
+
+  <svg viewBox="0 0 1440 730" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arr-black" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#0f172a" />
+      </marker>
+      <marker id="arr-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#dc2626" />
+      </marker>
+    </defs>
+
+    <!-- Top Supplier -->
+    <g transform="translate(50, 25)">
+      <polygon points="0,55 0,18 30,0 60,18 90,0 120,18 120,55" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/>
+      <rect x="0" y="55" width="120" height="42" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/>
+      <text x="60" y="74" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">ซัพพลายเออร์</text>
+      <text x="60" y="90" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">(Suppliers / โรงงาน)</text>
+    </g>
+
+    <!-- Top Production Control -->
+    <g transform="translate(510, 25)">
+      <rect x="0" y="0" width="340" height="72" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/>
+      <line x1="0" y1="36" x2="340" y2="36" stroke="#0f172a" stroke-width="1.8"/>
+      <text x="170" y="24" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">แผนกควบคุมคลังและธุรการจัดส่ง</text>
+      <text x="170" y="58" text-anchor="middle" font-size="12.5" font-weight="600" fill="#334155">ระบบ ERP เดิม (ไม่มีระบบช่วยวางแผนเส้นทาง)</text>
+    </g>
+
+    <!-- Top Customer -->
+    <g transform="translate(1250, 25)">
+      <polygon points="0,55 0,18 30,0 60,18 90,0 120,18 120,55" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/>
+      <rect x="0" y="55" width="120" height="42" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/>
+      <text x="60" y="74" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">ลูกค้า / แผนกจัดส่ง</text>
+      <text x="60" y="90" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">(Customer / DC Hub)</text>
+    </g>
+
+    <!-- Manual Information Flows (Lightning) -->
+    <path d="M 1250 55 L 1050 55 L 1030 65 L 850 65" fill="none" stroke="#0f172a" stroke-width="2" marker-end="url(#arr-black)"/>
+    <text x="1050" y="45" text-anchor="middle" font-size="11.5" font-weight="600" fill="#475569">ใบสั่งซื้อ / รายวัน</text>
+
+    <path d="M 510 55 L 330 55 L 310 65 L 170 65" fill="none" stroke="#0f172a" stroke-width="2" marker-end="url(#arr-black)"/>
+    <text x="340" y="45" text-anchor="middle" font-size="11.5" font-weight="600" fill="#475569">ใบแจ้งส่ง / ทางเมล</text>
+
+    <!-- Downward Arrows to Floor -->
+    <path d="M 570 97 L 570 165 L 260 165 L 260 255" fill="none" stroke="#0f172a" stroke-width="2" marker-end="url(#arr-black)"/>
+    <path d="M 680 97 L 680 255" fill="none" stroke="#0f172a" stroke-width="2" marker-end="url(#arr-black)"/>
+    <path d="M 790 97 L 790 165 L 1080 165 L 1080 255" fill="none" stroke="#0f172a" stroke-width="2" marker-end="url(#arr-black)"/>
+
+    <!-- Paper Badges -->
+    <rect x="200" y="165" width="120" height="26" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" rx="3"/>
+    <text x="260" y="182" text-anchor="middle" font-size="12" font-weight="700" fill="#92400e">ใบรับสินค้า (กระดาษ)</text>
+
+    <rect x="620" y="165" width="120" height="26" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" rx="3"/>
+    <text x="680" y="182" text-anchor="middle" font-size="12" font-weight="700" fill="#92400e">ใบย้าย (ไม่มีพิกัดชี้)</text>
+
+    <rect x="1015" y="165" width="130" height="26" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" rx="3"/>
+    <text x="1080" y="182" text-anchor="middle" font-size="12" font-weight="700" fill="#92400e">ใบเบิกจ่าย (Pick Slip)</text>
+
+    <!-- Physical Transportation Trucks -->
+    <g transform="translate(68, 140)">
+      <rect x="0" y="0" width="55" height="34" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+      <path d="M 55 12 L 74 12 L 84 24 L 84 34 L 55 34 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+      <circle cx="18" cy="37" r="6" fill="#1e293b"/>
+      <circle cx="68" cy="37" r="6" fill="#1e293b"/>
+      <text x="27.5" y="21" text-anchor="middle" font-size="11" font-weight="800" fill="#0f172a">รับเข้า</text>
+    </g>
+    <path d="M 110 185 L 110 265" fill="none" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arr-black)"/>
+
+    <g transform="translate(1265, 140)">
+      <rect x="0" y="0" width="55" height="34" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+      <path d="M 55 12 L 74 12 L 84 24 L 84 34 L 55 34 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+      <circle cx="18" cy="37" r="6" fill="#1e293b"/>
+      <circle cx="68" cy="37" r="6" fill="#1e293b"/>
+      <text x="27.5" y="21" text-anchor="middle" font-size="11" font-weight="800" fill="#0f172a">ส่งมอบ</text>
+    </g>
+    <path d="M 1250 290 L 1290 190" fill="none" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arr-black)"/>
+
+    <!-- ================= PROCESS BOX 1: PUT-AWAY ================= -->
+    <g transform="translate(70, 275)">
+      <polygon points="25,0 0,45 50,45" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+      <text x="25" y="34" text-anchor="middle" font-size="18" font-weight="800" fill="#854d0e">I</text>
+      <text x="25" y="60" text-anchor="middle" font-size="11.5" font-weight="700" fill="#475569">จุดตรวจรับ</text>
+    </g>
+
+    <path d="M 125 295 L 145 295" fill="none" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arr-black)"/>
+
+    <g transform="translate(150, 260)">
+      <rect x="0" y="0" width="235" height="52" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+      <text x="117" y="25" text-anchor="middle" font-size="14.5" font-weight="800" fill="#0f172a">1. รับเข้าและจัดเก็บ</text>
+      <text x="117" y="42" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">(Put-Away Process As-Is)</text>
+
+      <!-- Data Box 1 -->
+      <g transform="translate(0, 56)">
+        <rect x="0" y="0" width="235" height="120" fill="#ffffff" stroke="#475569" stroke-width="1.8"/>
+        <line x1="0" y1="30" x2="235" y2="30" stroke="#cbd5e1" stroke-width="1.5"/>
+        <line x1="0" y1="60" x2="235" y2="60" stroke="#cbd5e1" stroke-width="1.5"/>
+        <line x1="0" y1="90" x2="235" y2="90" stroke="#cbd5e1" stroke-width="1.5"/>
+        <text x="10" y="21" font-size="12" font-weight="700" fill="#334155">C/T (รอบเวลารวม):</text>
+        <text x="145" y="21" text-anchor="start" font-size="12.5" font-weight="800" fill="#0f172a">133.81 นาที</text>
+        <text x="10" y="51" font-size="12" font-weight="700" fill="#334155">VA (เนื้องานตรวจ+ยก):</text>
+        <text x="145" y="51" text-anchor="start" font-size="12.5" font-weight="800" fill="#16a34a">48.15 นาที</text>
+        <text x="10" y="81" font-size="12" font-weight="700" fill="#334155">NVA (เดินลึกข้ามโซน):</text>
+        <text x="145" y="81" text-anchor="start" font-size="12.5" font-weight="800" fill="#dc2626">85.66 นาที</text>
+        <text x="10" y="111" font-size="12" font-weight="700" fill="#334155">จำนวนพนักงาน:</text>
+        <text x="145" y="111" text-anchor="start" font-size="12.5" font-weight="800" fill="#0f172a">1-2 คน</text>
+      </g>
+    </g>
+
+    <!-- Kaizen Burst 1 (Bottleneck) - Compact & shifted up so Process Box 1 title is 100% visible -->
+    <g transform="translate(305, 172)">
+      <polygon points="30,0 42,18 62,10 58,30 78,36 60,50 74,70 50,70 48,90 30,72 12,86 14,66 -2,60 14,42 0,24 22,26" fill="#fee2e2" stroke="#dc2626" stroke-width="1.8"/>
+      <text x="37.5" y="39" text-anchor="middle" font-size="10.5" font-weight="800" fill="#991b1b">คอขวดช่องเต็ม</text>
+      <text x="37.5" y="53" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b91c1c">(FL-5-05) 52.4 น.</text>
+    </g>
+
+    <!-- Triangle 2 (Warehouse Floor) -->
+    <g transform="translate(445, 275)">
+      <polygon points="25,0 0,45 50,45" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+      <text x="25" y="34" text-anchor="middle" font-size="18" font-weight="800" fill="#854d0e">I</text>
+      <text x="25" y="60" text-anchor="middle" font-size="11.5" font-weight="700" fill="#475569">184 พิกัด</text>
+    </g>
+
+    <path d="M 385 295 L 440 295" fill="none" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arr-black)"/>
+    <path d="M 500 295 L 555 295" fill="none" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arr-black)"/>
+
+    <!-- ================= PROCESS BOX 2: CONSOLIDATION ================= -->
+    <g transform="translate(560, 260)">
+      <rect x="0" y="0" width="235" height="52" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+      <text x="117" y="25" text-anchor="middle" font-size="14.5" font-weight="800" fill="#0f172a">2. ย้ายรวบรวมสินค้า</text>
+      <text x="117" y="42" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">(Consolidation As-Is)</text>
+
+      <!-- Data Box 2 -->
+      <g transform="translate(0, 56)">
+        <rect x="0" y="0" width="235" height="120" fill="#ffffff" stroke="#475569" stroke-width="1.8"/>
+        <line x1="0" y1="30" x2="235" y2="30" stroke="#cbd5e1" stroke-width="1.5"/>
+        <line x1="0" y1="60" x2="235" y2="60" stroke="#cbd5e1" stroke-width="1.5"/>
+        <line x1="0" y1="90" x2="235" y2="90" stroke="#cbd5e1" stroke-width="1.5"/>
+        <text x="10" y="21" font-size="12" font-weight="700" fill="#334155">C/T (รอบเวลารวม):</text>
+        <text x="145" y="21" text-anchor="start" font-size="12.5" font-weight="800" fill="#0f172a">112.84 นาที</text>
+        <text x="10" y="51" font-size="12" font-weight="700" fill="#334155">VA (ดึง+จัดเรียงใหม่):</text>
+        <text x="145" y="51" text-anchor="start" font-size="12.5" font-weight="800" fill="#16a34a">44.62 นาที</text>
+        <text x="10" y="81" font-size="12" font-weight="700" fill="#334155">NVA (เดินสับสน+ย้าย C):</text>
+        <text x="145" y="81" text-anchor="start" font-size="12.5" font-weight="800" fill="#dc2626">68.22 นาที</text>
+        <text x="10" y="111" font-size="12" font-weight="700" fill="#334155">จำนวนพนักงาน:</text>
+        <text x="145" y="111" text-anchor="start" font-size="12.5" font-weight="800" fill="#0f172a">1-2 คน</text>
+      </g>
+    </g>
+
+    <!-- Kaizen Burst 2 (Relocation Waste) - Compact & shifted up so Process Box 2 title is 100% visible -->
+    <g transform="translate(712, 172)">
+      <polygon points="30,0 42,18 62,10 58,30 78,36 60,50 74,70 50,70 48,90 30,72 12,86 14,66 -2,60 14,42 0,24 22,26" fill="#fee2e2" stroke="#dc2626" stroke-width="1.8"/>
+      <text x="37.5" y="39" text-anchor="middle" font-size="10.5" font-weight="800" fill="#991b1b">ย้ายของตายกลุ่ม C</text>
+      <text x="37.5" y="53" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b91c1c">สูญเปล่า 35.6 น.</text>
+    </g>
+
+    <!-- Triangle 3 (Buffer to Picking) -->
+    <g transform="translate(855, 275)">
+      <polygon points="25,0 0,45 50,45" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+      <text x="25" y="34" text-anchor="middle" font-size="18" font-weight="800" fill="#854d0e">I</text>
+      <text x="25" y="60" text-anchor="middle" font-size="11.5" font-weight="700" fill="#475569">พร้อมเบิก</text>
+    </g>
+
+    <path d="M 795 295 L 850 295" fill="none" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arr-black)"/>
+    <path d="M 910 295 L 965 295" fill="none" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arr-black)"/>
+
+    <!-- ================= PROCESS BOX 3: ORDER PICKING ================= -->
+    <g transform="translate(970, 260)">
+      <rect x="0" y="0" width="235" height="52" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+      <text x="117" y="25" text-anchor="middle" font-size="14.5" font-weight="800" fill="#0f172a">3. เดินหยิบสินค้า</text>
+      <text x="117" y="42" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">(Order Picking As-Is)</text>
+
+      <!-- Data Box 3 -->
+      <g transform="translate(0, 56)">
+        <rect x="0" y="0" width="235" height="120" fill="#ffffff" stroke="#475569" stroke-width="1.8"/>
+        <line x1="0" y1="30" x2="235" y2="30" stroke="#cbd5e1" stroke-width="1.5"/>
+        <line x1="0" y1="60" x2="235" y2="60" stroke="#cbd5e1" stroke-width="1.5"/>
+        <line x1="0" y1="90" x2="235" y2="90" stroke="#cbd5e1" stroke-width="1.5"/>
+        <text x="10" y="21" font-size="12" font-weight="700" fill="#334155">C/T (รอบเวลารวม):</text>
+        <text x="145" y="21" text-anchor="start" font-size="12.5" font-weight="800" fill="#0f172a">34.96 นาที</text>
+        <text x="10" y="51" font-size="12" font-weight="700" fill="#334155">VA (หยิบสินค้าลงรถ):</text>
+        <text x="145" y="51" text-anchor="start" font-size="12.5" font-weight="800" fill="#16a34a">8.93 นาที</text>
+        <text x="10" y="81" font-size="12" font-weight="700" fill="#334155">NVA (เดินวกวนไปมา):</text>
+        <text x="145" y="81" text-anchor="start" font-size="12.5" font-weight="800" fill="#dc2626">26.03 นาที</text>
+        <text x="10" y="111" font-size="12" font-weight="700" fill="#334155">ระยะทางเดินเฉลี่ย:</text>
+        <text x="145" y="111" text-anchor="start" font-size="12.5" font-weight="800" fill="#dc2626">635.80 เมตร</text>
+      </g>
+    </g>
+
+    <!-- Kaizen Burst 3 (Search Delay) - Compact & shifted up so Process Box 3 title is 100% visible -->
+    <g transform="translate(1122, 172)">
+      <polygon points="30,0 42,18 62,10 58,30 78,36 60,50 74,70 50,70 48,90 30,72 12,86 14,66 -2,60 14,42 0,24 22,26" fill="#fee2e2" stroke="#dc2626" stroke-width="1.8"/>
+      <text x="37.5" y="39" text-anchor="middle" font-size="10.5" font-weight="800" fill="#991b1b">เสียเวลาเพ่งหา</text>
+      <text x="37.5" y="53" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b91c1c">ชะลอ 12.2 น.</text>
+    </g>
+
+    <!-- Staging Box -->
+    <g transform="translate(1265, 265)">
+      <rect x="0" y="0" width="85" height="46" fill="#f1f5f9" stroke="#0f172a" stroke-width="2" rx="3"/>
+      <text x="42" y="22" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">จุดตรวจพัก</text>
+      <text x="42" y="37" text-anchor="middle" font-size="10.5" font-weight="600" fill="#64748b">(Staging Area)</text>
+    </g>
+
+    <path d="M 1205 295 L 1260 295" fill="none" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arr-black)"/>
+
+    <!-- ================= LEAD TIME LADDER (AS-IS) ================= -->
+    <g transform="translate(60, 520)">
+      <polyline points="
+        0,0 130,0 130,38 310,38 310,0 
+        530,0 530,38 740,38 740,0 
+        940,0 940,38 1140,38 1140,0 1290,0
+      " fill="none" stroke="#0f172a" stroke-width="2.5"/>
+
+      <!-- NVA Text (Top) -->
+      <text x="65" y="-10" text-anchor="middle" font-size="12" font-weight="700" fill="#dc2626">รอตรวจรับ 11.8 น.</text>
+      <text x="420" y="-10" text-anchor="middle" font-size="12" font-weight="700" fill="#dc2626">เดินเก็บข้ามโซน 85.7 น.</text>
+      <text x="840" y="-10" text-anchor="middle" font-size="12" font-weight="700" fill="#dc2626">เดินสับสน+ย้ายกลุ่ม C 68.2 น.</text>
+      <text x="1215" y="-10" text-anchor="middle" font-size="12" font-weight="700" fill="#dc2626">เดินวกวน 635.8 ม. (26.0 น.)</text>
+
+      <!-- VA Text (Bottom) -->
+      <text x="220" y="58" text-anchor="middle" font-size="13" font-weight="800" fill="#16a34a">VA = 48.15 นาที</text>
+      <text x="635" y="58" text-anchor="middle" font-size="13" font-weight="800" fill="#16a34a">VA = 44.62 นาที</text>
+      <text x="1040" y="58" text-anchor="middle" font-size="13" font-weight="800" fill="#16a34a">VA = 8.93 นาที</text>
+
+      <!-- SUMMARY KPI CARD BOTTOM RIGHT -->
+      <g transform="translate(900, 95)">
+        <rect x="0" y="0" width="380" height="95" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5" rx="6"/>
+        <line x1="0" y1="32" x2="380" y2="32" stroke="#cbd5e1" stroke-width="1.8"/>
+        <text x="190" y="22" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">สรุปตัวชี้วัดสายธารสภาพปัจจุบัน (As-Is)</text>
+
+        <text x="16" y="52" font-size="12" font-weight="700" fill="#334155">เวลารอบการทำงานรวม (Cycle Time):</text>
+        <text x="245" y="52" text-anchor="start" font-size="13.5" font-weight="800" fill="#0f172a">281.61 นาที</text>
+
+        <text x="16" y="71" font-size="12" font-weight="700" fill="#334155">เวลามูลค่าเพิ่ม (Value-Added Time):</text>
+        <text x="245" y="71" text-anchor="start" font-size="13.5" font-weight="800" fill="#16a34a">78.30 นาที (27.8%)</text>
+
+        <text x="16" y="89" font-size="12" font-weight="700" fill="#334155">ประสิทธิภาพสายธาร (PCE):</text>
+        <text x="245" y="89" text-anchor="start" font-size="14.5" font-weight="900" fill="#dc2626">27.81%</text>
+      </g>
+    </g>
+
+  </svg>
+  <div class="caption-bottom">(ที่มา: ผู้วิจัยสร้างขึ้นจากการศึกษาเวลาตามสภาพจริงในคลังสินค้า, 2569)</div>
+</div>
+
+
+<!-- =================================================================== -->
+<!-- 2. FUTURE STATE VSM (To-Be) -->
+<!-- =================================================================== -->
+<div class="vsm-container">
+  <div class="caption-top">
+    <div class="caption-title">แผนผังสายธารแห่งคุณค่าสภาพหลังปรับปรุง (Future State Value Stream Mapping: To-Be)</div>
+  </div>
+
+  <svg viewBox="0 0 1440 730" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arr-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#1d4ed8" />
+      </marker>
+      <marker id="arr-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#16a34a" />
+      </marker>
+    </defs>
+
+    <!-- Top Supplier -->
+    <g transform="translate(50, 25)">
+      <polygon points="0,55 0,18 30,0 60,18 90,0 120,18 120,55" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/>
+      <rect x="0" y="55" width="120" height="42" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/>
+      <text x="60" y="74" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">ซัพพลายเออร์</text>
+      <text x="60" y="90" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">(Suppliers / โรงงาน)</text>
+    </g>
+
+    <!-- Top Smart WMS Center -->
+    <g transform="translate(480, 15)">
+      <rect x="0" y="0" width="460" height="95" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2.5" rx="6"/>
+      <line x1="0" y1="34" x2="460" y2="34" stroke="#93c5fd" stroke-width="2"/>
+      <text x="230" y="24" text-anchor="middle" font-size="15" font-weight="800" fill="#1e3a8a">ระบบสนับสนุนการตัดสินใจอัจฉริยะ (Smart WMS)</text>
+      <text x="230" y="52" text-anchor="middle" font-size="13" font-weight="800" fill="#1d4ed8">1. แบบจำลอง Multi-Criteria ABC (WSM ถ่วงน้ำหนัก 60/40)</text>
+      <text x="230" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="#0369a1">2. S-Shape Heuristic Router  |  3. Selective Golden Zone Allocation</text>
+      <text x="230" y="87" text-anchor="middle" font-size="11.5" font-weight="600" fill="#475569">(ออกใบสั่งงานดิจิทัลและรายการพิกัดที่แม่นยำล่วงหน้า)</text>
+    </g>
+
+    <!-- Top Customer -->
+    <g transform="translate(1250, 25)">
+      <polygon points="0,55 0,18 30,0 60,18 90,0 120,18 120,55" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/>
+      <rect x="0" y="55" width="120" height="42" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/>
+      <text x="60" y="74" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">ลูกค้า / แผนกจัดส่ง</text>
+      <text x="60" y="90" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">(Customer / DC Hub)</text>
+    </g>
+
+    <!-- Electronic Info Flows -->
+    <path d="M 1250 60 L 945 60" fill="none" stroke="#1d4ed8" stroke-width="2.2" stroke-dasharray="7,4" marker-end="url(#arr-blue)"/>
+    <text x="1090" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">คำสั่งซื้อดิจิทัล (EDI / API)</text>
+
+    <path d="M 480 60 L 175 60" fill="none" stroke="#1d4ed8" stroke-width="2.2" stroke-dasharray="7,4" marker-end="url(#arr-blue)"/>
+    <text x="325" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">แผนรับเข้าล่วงหน้า (ASN Digital)</text>
+
+    <!-- Downward Directives -->
+    <path d="M 540 115 L 540 165 L 265 165 L 265 255" fill="none" stroke="#1d4ed8" stroke-width="2" marker-end="url(#arr-blue)"/>
+    <path d="M 710 115 L 710 255" fill="none" stroke="#1d4ed8" stroke-width="2" marker-end="url(#arr-blue)"/>
+    <path d="M 870 115 L 870 165 L 1085 165 L 1085 255" fill="none" stroke="#1d4ed8" stroke-width="2" marker-end="url(#arr-blue)"/>
+
+    <!-- Digital Instruction Badges -->
+    <rect x="185" y="175" width="165" height="28" fill="#ecfdf5" stroke="#10b981" stroke-width="1.8" rx="4"/>
+    <text x="267" y="194" text-anchor="middle" font-size="12" font-weight="800" fill="#047857">เดินจัดเก็บสินค้าตาม s-shape</text>
+
+    <rect x="635" y="175" width="155" height="28" fill="#ecfdf5" stroke="#10b981" stroke-width="1.8" rx="4"/>
+    <text x="712" y="194" text-anchor="middle" font-size="12" font-weight="800" fill="#047857">คำสั่งย้ายเฉพาะกลุ่ม A (WSM)</text>
+
+    <rect x="1000" y="175" width="170" height="28" fill="#ecfdf5" stroke="#10b981" stroke-width="1.8" rx="4"/>
+    <text x="1085" y="194" text-anchor="middle" font-size="12" font-weight="800" fill="#047857">ลำดับการหยิบแบบ S-Shape</text>
+
+    <!-- Transport Trucks -->
+    <g transform="translate(68, 140)">
+      <rect x="0" y="0" width="55" height="34" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+      <path d="M 55 12 L 74 12 L 84 24 L 84 34 L 55 34 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+      <circle cx="18" cy="37" r="6" fill="#1e293b"/>
+      <circle cx="68" cy="37" r="6" fill="#1e293b"/>
+      <text x="27.5" y="21" text-anchor="middle" font-size="11" font-weight="800" fill="#0f172a">รับเข้า</text>
+    </g>
+    <path d="M 110 185 L 110 265" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arr-green)"/>
+
+    <g transform="translate(1265, 140)">
+      <rect x="0" y="0" width="55" height="34" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+      <path d="M 55 12 L 74 12 L 84 24 L 84 34 L 55 34 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+      <circle cx="18" cy="37" r="6" fill="#1e293b"/>
+      <circle cx="68" cy="37" r="6" fill="#1e293b"/>
+      <text x="27.5" y="21" text-anchor="middle" font-size="11" font-weight="800" fill="#0f172a">ส่งมอบ</text>
+    </g>
+    <path d="M 1250 290 L 1290 190" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arr-green)"/>
+
+    <!-- ================= PROCESS BOX 1: SELECTIVE PUT-AWAY ================= -->
+    <g transform="translate(70, 275)">
+      <polygon points="25,0 0,45 50,45" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+      <text x="25" y="34" text-anchor="middle" font-size="18" font-weight="800" fill="#854d0e">I</text>
+      <text x="25" y="60" text-anchor="middle" font-size="11.5" font-weight="700" fill="#475569">จุดตรวจรับ</text>
+    </g>
+
+    <path d="M 125 295 L 145 295" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arr-green)"/>
+
+    <!-- Widened Process Box 1 (245px) with comfortable margins -->
+    <g transform="translate(148, 260)">
+      <rect x="0" y="0" width="245" height="52" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/>
+      <text x="122.5" y="25" text-anchor="middle" font-size="14.5" font-weight="800" fill="#14532d">1. รับเข้าจัดเก็บเจาะจง</text>
+      <text x="122.5" y="42" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">(Selective Put-Away To-Be)</text>
+
+      <!-- Data Box 1 -->
+      <g transform="translate(0, 56)">
+        <rect x="0" y="0" width="245" height="120" fill="#ffffff" stroke="#16a34a" stroke-width="1.8"/>
+        <line x1="0" y1="30" x2="245" y2="30" stroke="#bbf7d0" stroke-width="1.5"/>
+        <line x1="0" y1="60" x2="245" y2="60" stroke="#bbf7d0" stroke-width="1.5"/>
+        <line x1="0" y1="90" x2="245" y2="90" stroke="#bbf7d0" stroke-width="1.5"/>
+        <text x="8" y="21" font-size="11.5" font-weight="700" fill="#334155">C/T (รอบเวลารวม):</text>
+        <text x="237" y="21" text-anchor="end" font-size="11.5" font-weight="800" fill="#16a34a">87.50 น. (-34.6%)</text>
+        <text x="8" y="51" font-size="11.5" font-weight="700" fill="#334155">VA (ตรวจ+ยกเก็บ):</text>
+        <text x="237" y="51" text-anchor="end" font-size="11.5" font-weight="800" fill="#16a34a">34.20 นาที</text>
+        <text x="8" y="81" font-size="11.5" font-weight="700" fill="#334155">NVA (เดิน Golden Zone):</text>
+        <text x="237" y="81" text-anchor="end" font-size="11.5" font-weight="800" fill="#059669">53.30 น. (-37.8%)</text>
+        <text x="8" y="111" font-size="11.5" font-weight="700" fill="#334155">คอขวดช่องเต็ม:</text>
+        <text x="237" y="111" text-anchor="end" font-size="11.5" font-weight="800" fill="#16a34a">0.00 น. (ขจัดหมด)</text>
+      </g>
+    </g>
+
+    <!-- Supermarket Buffer (Golden Zone) -->
+    <g transform="translate(415, 268)">
+      <rect x="0" y="0" width="115" height="52" fill="#fef9c3" stroke="#ca8a04" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="57.5" y="20" text-anchor="middle" font-size="11.5" font-weight="800" fill="#854d0e">Golden Zone</text>
+      <text x="57.5" y="34" text-anchor="middle" font-size="10.5" font-weight="700" fill="#a16207">สินค้ากลุ่ม A</text>
+      <text x="57.5" y="47" text-anchor="middle" font-size="10" font-weight="600" fill="#713f12">(FL-1 ถึง FL-3)</text>
+    </g>
+
+    <path d="M 393 295 L 410 295" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arr-green)"/>
+    <path d="M 535 295 L 552 295" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arr-green)"/>
+
+    <!-- ================= PROCESS BOX 2: SELECTIVE CONSOLIDATION ================= -->
+    <g transform="translate(555, 260)">
+      <rect x="0" y="0" width="245" height="52" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/>
+      <text x="122.5" y="25" text-anchor="middle" font-size="14.5" font-weight="800" fill="#14532d">2. ย้ายรวบรวมเฉพาะกลุ่ม A</text>
+      <text x="122.5" y="42" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">(Selective Consolidation To-Be)</text>
+
+      <!-- Data Box 2 -->
+      <g transform="translate(0, 56)">
+        <rect x="0" y="0" width="245" height="120" fill="#ffffff" stroke="#16a34a" stroke-width="1.8"/>
+        <line x1="0" y1="30" x2="245" y2="30" stroke="#bbf7d0" stroke-width="1.5"/>
+        <line x1="0" y1="60" x2="245" y2="60" stroke="#bbf7d0" stroke-width="1.5"/>
+        <line x1="0" y1="90" x2="245" y2="90" stroke="#bbf7d0" stroke-width="1.5"/>
+        <text x="8" y="21" font-size="11.5" font-weight="700" fill="#334155">C/T (รอบเวลารวม):</text>
+        <text x="237" y="21" text-anchor="end" font-size="11.5" font-weight="800" fill="#16a34a">68.50 น. (-39.3%)</text>
+        <text x="8" y="51" font-size="11.5" font-weight="700" fill="#334155">VA (ดึง+จัดเรียงใหม่):</text>
+        <text x="237" y="51" text-anchor="end" font-size="11.5" font-weight="800" fill="#16a34a">26.00 นาที</text>
+        <text x="8" y="81" font-size="11.5" font-weight="700" fill="#334155">NVA (เดินเฉพาะกลุ่ม A):</text>
+        <text x="237" y="81" text-anchor="end" font-size="11.5" font-weight="800" fill="#059669">42.50 น. (-37.7%)</text>
+        <text x="8" y="111" font-size="11.5" font-weight="700" fill="#334155">การย้ายของตายกลุ่ม C:</text>
+        <text x="237" y="111" text-anchor="end" font-size="11.5" font-weight="800" fill="#16a34a">0.00 น. (ตัดทิ้ง 100%)</text>
+      </g>
+    </g>
+
+    <!-- Pull Signal (Kanban) -->
+    <g transform="translate(845, 275)">
+      <rect x="0" y="0" width="70" height="38" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+      <text x="35" y="23" text-anchor="middle" font-size="12" font-weight="800" fill="#047857">KANBAN</text>
+    </g>
+
+    <path d="M 800 295 L 840 295" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arr-green)"/>
+    <path d="M 915 295 L 955 295" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arr-green)"/>
+
+    <!-- ================= PROCESS BOX 3: S-SHAPE ORDER PICKING ================= -->
+    <g transform="translate(960, 260)">
+      <rect x="0" y="0" width="250" height="52" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/>
+      <text x="125" y="25" text-anchor="middle" font-size="14.5" font-weight="800" fill="#14532d">3. เดินหยิบอัจฉริยะ</text>
+      <text x="125" y="42" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">(S-Shape Routing To-Be)</text>
+
+      <!-- Data Box 3 -->
+      <g transform="translate(0, 56)">
+        <rect x="0" y="0" width="250" height="120" fill="#ffffff" stroke="#16a34a" stroke-width="1.8"/>
+        <line x1="0" y1="30" x2="250" y2="30" stroke="#bbf7d0" stroke-width="1.5"/>
+        <line x1="0" y1="60" x2="250" y2="60" stroke="#bbf7d0" stroke-width="1.5"/>
+        <line x1="0" y1="90" x2="250" y2="90" stroke="#bbf7d0" stroke-width="1.5"/>
+        <text x="8" y="21" font-size="11.5" font-weight="700" fill="#334155">C/T (รอบเวลารวม):</text>
+        <text x="242" y="21" text-anchor="end" font-size="11.5" font-weight="800" fill="#16a34a">23.50 น. (-32.8%)</text>
+        <text x="8" y="51" font-size="11.5" font-weight="700" fill="#334155">VA (หยิบสินค้าลงรถ):</text>
+        <text x="242" y="51" text-anchor="end" font-size="11.5" font-weight="800" fill="#16a34a">9.50 นาที</text>
+        <text x="8" y="81" font-size="11.5" font-weight="700" fill="#334155">NVA (เดินตาม S-Shape):</text>
+        <text x="242" y="81" text-anchor="end" font-size="11.5" font-weight="800" fill="#059669">14.00 น. (-46.2%)</text>
+        <text x="8" y="111" font-size="11.5" font-weight="700" fill="#334155">ระยะทางเดินเฉลี่ย:</text>
+        <text x="242" y="111" text-anchor="end" font-size="11.5" font-weight="800" fill="#16a34a">195.40 ม. (-69.3%)</text>
+      </g>
+    </g>
+
+    <!-- Staging Box -->
+    <g transform="translate(1265, 265)">
+      <rect x="0" y="0" width="85" height="46" fill="#f0fdf4" stroke="#16a34a" stroke-width="2" rx="3"/>
+      <text x="42" y="22" text-anchor="middle" font-size="12" font-weight="800" fill="#14532d">จุดตรวจพัก</text>
+      <text x="42" y="37" text-anchor="middle" font-size="10.5" font-weight="600" fill="#166534">(Staging Area)</text>
+    </g>
+
+    <path d="M 1210 295 L 1260 295" fill="none" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arr-green)"/>
+
+    <!-- ================= LEAD TIME LADDER (TO-BE) ================= -->
+    <g transform="translate(60, 520)">
+      <polyline points="
+        0,0 130,0 130,38 310,38 310,0 
+        530,0 530,38 740,38 740,0 
+        940,0 940,38 1140,38 1140,0 1290,0
+      " fill="none" stroke="#16a34a" stroke-width="2.5"/>
+
+      <!-- NVA Text (Top) -->
+      <text x="65" y="-10" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">ตรวจรับรวดเร็ว 8.5 น.</text>
+      <text x="420" y="-10" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">เดิน Golden Zone 53.3 น.</text>
+      <text x="840" y="-10" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">เดินย้ายเฉพาะกลุ่ม A 42.5 น.</text>
+      <text x="1215" y="-10" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">เดิน S-Shape 195 ม. (14.0 น.)</text>
+
+      <!-- VA Text (Bottom) -->
+      <text x="220" y="58" text-anchor="middle" font-size="13" font-weight="800" fill="#16a34a">VA = 34.20 นาที</text>
+      <text x="635" y="58" text-anchor="middle" font-size="13" font-weight="800" fill="#16a34a">VA = 26.00 นาที</text>
+      <text x="1040" y="58" text-anchor="middle" font-size="13" font-weight="800" fill="#16a34a">VA = 9.50 นาที</text>
+
+      <!-- SUMMARY KPI CARD BOTTOM RIGHT - Widened to 390px for comfortable padding -->
+      <g transform="translate(890, 95)">
+        <rect x="0" y="0" width="390" height="95" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5" rx="6"/>
+        <line x1="0" y1="32" x2="390" y2="32" stroke="#bbf7d0" stroke-width="1.8"/>
+        <text x="195" y="22" text-anchor="middle" font-size="14" font-weight="800" fill="#14532d">สรุปตัวชี้วัดสายธารหลังปรับปรุง (To-Be)</text>
+
+        <text x="14" y="52" font-size="11.5" font-weight="700" fill="#334155">เวลารอบการทำงานรวม (Cycle Time):</text>
+        <text x="376" y="52" text-anchor="end" font-size="12" font-weight="800" fill="#16a34a">179.50 นาที (-36.26%)</text>
+
+        <text x="14" y="71" font-size="11.5" font-weight="700" fill="#334155">เวลามูลค่าเพิ่ม (Value-Added Time):</text>
+        <text x="376" y="71" text-anchor="end" font-size="12" font-weight="800" fill="#16a34a">69.70 นาที (38.83%)</text>
+
+        <text x="14" y="89" font-size="11.5" font-weight="700" fill="#334155">ประสิทธิภาพสายธารใหม่ (New PCE):</text>
+        <text x="376" y="89" text-anchor="end" font-size="13" font-weight="900" fill="#16a34a">33.62% (+5.81%)</text>
+      </g>
+    </g>
+
+  </svg>
+  <div class="caption-bottom">(ที่มา: ผู้วิจัยสร้างขึ้นจากการประยุกต์ใช้แบบจำลอง WSM และการจัดเส้นทางอัจฉริยะ, 2569)</div>
+</div>
+
+</body>
+</html>
