@@ -7110,12 +7110,12 @@ function renderSummaryTab() {
       if (r.key === 'daily') {
         fteDisplay = `
           <div class="font-bold text-amber-700 whitespace-nowrap">+${fteEquiv} กะปฏิบัติการ (Shift Equiv.)</div>
-          <div class="text-[10px] text-slate-500 font-normal leading-tight">ฟื้นคืนเวลาทีม ${shiftHoursTotal} ชม./วัน<br><span class="text-slate-400">(เกณฑ์มาตรฐานกะละ 8 ชม.)</span></div>
+          <div class="text-[10px] text-slate-500 font-normal leading-tight">ฟื้นคืนเวลาทีม ${shiftHoursTotal} ชม./วัน<br><span class="text-slate-400">(เกณฑ์มาตรฐานกะละ 8 ชม.-คน จากฐาน 32 ชม.)</span></div>
         `;
       } else if (r.key === 'annual') {
         fteDisplay = `
           <div class="font-bold text-amber-700 whitespace-nowrap">~${fteEquiv} FTE ประจำปี (Annual FTE)</div>
-          <div class="text-[10px] text-slate-500 font-normal leading-tight">คืนเวลาปฏิบัติการสะสม ${Number(shiftHoursTotal).toLocaleString()} ชม./ปี<br><span class="text-emerald-700 font-medium">(เทียบเท่าฟื้นคืน +${shiftCount} กะงาน)</span></div>
+          <div class="text-[10px] text-slate-500 font-normal leading-tight">คืนเวลาปฏิบัติการสะสม ${Number(shiftHoursTotal).toLocaleString()} ชม./ปี<br><span class="text-emerald-700 font-medium">(เทียบเท่า +${shiftCount} กะงาน จากฐานเวลา 7,680 ชม.)</span></div>
         `;
       } else {
         const baseScopeHours = r.key === 'pilot' ? '1,760' : '1,920';
